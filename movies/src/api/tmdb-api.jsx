@@ -112,3 +112,14 @@ export const getTopRatedMovies = () => {
   }
   return res.json();
     })};
+
+export const getNowPlayingMovies = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/now_playing?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+  )
+    .then(res => {
+  if (!res.ok) {
+    throw new Error("Failed to fetch now playing movies");
+  }
+  return res.json();
+})};
