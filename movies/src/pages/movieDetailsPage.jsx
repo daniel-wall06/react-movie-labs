@@ -4,7 +4,9 @@ import PageTemplate from "../components/templateMoviePage";
 import { getMovie } from '../api/tmdb-api'
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner'
+import { getMovieRecommendations } from '../api/tmdb-api'
 // import useMovie from "../hooks/useMovie";   Redundant
+import MovieRecommendations from "../components/movieRecommendations";
 
 
 const MoviePage = (props) => {
@@ -13,6 +15,7 @@ const MoviePage = (props) => {
     queryKey: ['movie', {id: id}],
     queryFn: getMovie,
   })
+
 
   if (isPending) {
     return <Spinner />;
@@ -28,8 +31,13 @@ const MoviePage = (props) => {
       {movie ? (
         <>
           <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} />
-          </PageTemplate>
+  <MovieDetails movie={movie} />
+</PageTemplate>
+
+<MovieRecommendations movieId={id} />
+          <h2>Recommended Movies</h2>
+
+
         </>
       ) : (
         <p>Waiting for movie details</p>
