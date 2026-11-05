@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export const MoviesContext = React.createContext(null);
 
 const MoviesContextProvider = (props) => {
-  const [favorites, setFavorites] = useState([]);
   const [myReviews, setMyReviews] = useState({});
-  const [playlist, setPlaylist] = useState([]);
+const [favorites, setFavorites] = useState(() => {
+  const savedFavorites = localStorage.getItem("favorites");
+  return savedFavorites ? JSON.parse(savedFavorites) : [];
+});
+ const [playlist, setPlaylist] = useState(() => {
+  const savedPlaylist = localStorage.getItem("playlist");
+  return savedPlaylist ? JSON.parse(savedPlaylist) : [];
+});
+
+useEffect(() => {
+  localStorage.setItem("playlist", JSON.stringify(playlist));
+}, [playlist]);
+
+useEffect(() => {
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+}, [favorites]);
 
   const addToFavorites = (movie) => {
     let newFavorites = [];
