@@ -100,4 +100,15 @@ export const getPopularMovies = () => {
     throw new Error("Failed to fetch popular movies");
   }
   return res.json();
-})}
+})};
+
+export const getTopRatedMovies = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+  )
+    .then(res => {
+  if (!res.ok) {
+    throw new Error("Failed to fetch top rated movies");
+  }
+  return res.json();
+    })};
