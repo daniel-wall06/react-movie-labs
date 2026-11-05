@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { getUpcomingMovies } from "../api/tmdb-api";
+import AddToMustWatch from "../components/cardIcons/addToMustWatch";
 
 const UpcomingMoviesPage = () => {
   const [movies, setMovies] = useState([]);
