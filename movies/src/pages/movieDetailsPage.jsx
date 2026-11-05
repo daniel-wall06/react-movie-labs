@@ -11,8 +11,8 @@ import MovieRecommendations from "../components/movieRecommendations";
 
 const MoviePage = (props) => {
   const { id } = useParams();
-    const { data: movie, error, isPending, isError  } = useQuery({
-    queryKey: ['movie', {id: id}],
+  const { data: movie, error, isPending, isError } = useQuery({
+    queryKey: ['movie', { id: id }],
     queryFn: getMovie,
   })
 
@@ -31,11 +31,11 @@ const MoviePage = (props) => {
       {movie ? (
         <>
           <PageTemplate movie={movie}>
-  <MovieDetails movie={movie} />
-</PageTemplate>
+            <MovieDetails movie={movie} />
+          </PageTemplate>
 
-<MovieRecommendations movieId={id} />
-          <h2>Recommended Movies</h2>
+          <MovieRecommendations movieId={id} />
+
 
 
         </>
