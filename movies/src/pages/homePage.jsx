@@ -2,7 +2,8 @@ import { getMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
-import AddToFavoritesIcon from '../components/cardIcons/addToPlaylist'
+import AddToPlaylist from '../components/cardIcons/addToPlaylist'
+import AddToFavouritesIcon from '../components/cardIcons/addToFavourites';
 
 
 const HomePage = (props) => {
@@ -29,12 +30,17 @@ const HomePage = (props) => {
 
      return (
       <PageTemplate
-        title="Discover Movies"
-        movies={movies}
-        action={(movie) => {
-          return <AddToFavoritesIcon movie={movie} />
-        }}
-      />
+  title="Discover Movies"
+  movies={movies}
+  action={(movie) => {
+    return (
+      <>
+        <AddToFavouritesIcon movie={movie} />
+        <AddToPlaylist movie={movie} />
+      </>
+    );
+  }}
+/>
   );
 
 };

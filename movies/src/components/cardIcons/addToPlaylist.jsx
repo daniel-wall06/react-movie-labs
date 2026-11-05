@@ -13,9 +13,12 @@ const AddToPlaylistIcon = ({ movie }) => {
   };
   
   return (
-    <IconButton aria-label="add to playlist" onClick={handleAddToPlaylist}>
-      <PlaylistAddIcon color="primary" fontSize="large" />
-    </IconButton>
+ <IconButton
+  aria-label="add to must watch"
+  onClick={handleAddToPlaylist}
+>
+  <PlaylistAddIcon color="primary" />
+</IconButton>
   );
 };
 
