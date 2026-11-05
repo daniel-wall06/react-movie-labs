@@ -14,17 +14,17 @@ import MovieReviews from "../movieReviews"
 
 
 const root = {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    listStyle: "none",
-    padding: 1.5,
-    margin: 0,
+  display: "flex",
+  justifyContent: "center",
+  flexWrap: "wrap",
+  listStyle: "none",
+  padding: 1.5,
+  margin: 0,
 };
 const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => {  // Don't miss this!
-const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <>
@@ -35,22 +35,22 @@ const [drawerOpen, setDrawerOpen] = useState(false);
       <Typography variant="h6" component="p">
         {movie.overview}
       </Typography>
-      
 
-      <Paper 
-        component="ul" 
-        sx={{...root}}
+
+      <Paper
+        component="ul"
+        sx={{ ...root }}
       >
         <li>
-          <Chip label="Genres" sx={{...chip}} color="primary" />
+          <Chip label="Genres" sx={{ ...chip }} color="primary" />
         </li>
         {movie.genres.map((g) => (
           <li key={g.name}>
-            <Chip label={g.name} sx={{...chip}} />
+            <Chip label={g.name} sx={{ ...chip }} />
           </li>
         ))}
       </Paper>
-      <Paper component="ul" sx={{...root}}>
+      <Paper component="ul" sx={{ ...root }}>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
           icon={<MonetizationIcon />}
@@ -63,21 +63,21 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
 
-<Paper component="ul" sx={{...root}}>
-  <li>
-    <Chip label="Production Countries" sx={{...chip}} color="primary" />
-  </li>
-  {movie.production_countries?.map((country) => (
-    <li key={country.iso_3166_1}>
-      <Chip label={country.name} sx={{...chip}} />
-    </li>
-  ))}
-</Paper>
+      <Paper component="ul" sx={{ ...root }}>
+        <li>
+          <Chip label="Production Countries" sx={{ ...chip }} color="primary" />
+        </li>
+        {movie.production_countries?.map((country) => (
+          <li key={country.iso_3166_1}>
+            <Chip label={country.name} sx={{ ...chip }} />
+          </li>
+        ))}
+      </Paper>
 
-            <Fab
+      <Fab
         color="secondary"
         variant="extended"
-        onClick={() =>setDrawerOpen(true)}
+        onClick={() => setDrawerOpen(true)}
         sx={{
           position: 'fixed',
           bottom: '1em',
@@ -90,9 +90,9 @@ const [drawerOpen, setDrawerOpen] = useState(false);
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
-        <NavigationIcon />
-        Reviews
-      </>
+      <NavigationIcon />
+      Reviews
+    </>
   );
 };
-export default MovieDetails ;
+export default MovieDetails;
