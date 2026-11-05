@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getMovieRecommendations } from "../../api/tmdb-api";
 import Spinner from "../spinner";
+import { Link } from "react-router";
 
 const MovieRecommendations = ({ movieId }) => {
     const { data: recommendations, error, isPending, isError } = useQuery({
@@ -21,7 +22,9 @@ const MovieRecommendations = ({ movieId }) => {
             {recommendations.results.length > 0 ? (
                 recommendations.results.map((recommendedMovie) => (
                     <p key={recommendedMovie.id}>
-                        {recommendedMovie.title}
+                        <Link to={`/movies/${recommendedMovie.id}`}>
+                            {recommendedMovie.title}
+                        </Link>
                     </p>
                 ))
             ) : (
