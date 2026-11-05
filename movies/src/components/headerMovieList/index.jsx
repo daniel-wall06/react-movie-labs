@@ -6,9 +6,10 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router";
 
-  const navigate = useNavigate();
+
 
 const Header = (props ) => {
+    const navigate = useNavigate();
   const title = props.title
   return (
     <Paper 
