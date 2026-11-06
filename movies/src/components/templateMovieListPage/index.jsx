@@ -12,6 +12,7 @@ function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [sortOrder, setSortOrder] = useState("default");
+  const [minRating, setMinRating] = useState(0);
   const genreId = Number(genreFilter);
 
   let displayedMovies = movies
@@ -20,7 +21,8 @@ function MovieListPageTemplate({ movies, title, action }) {
     })
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-    });
+    })
+    .filter((m) => m.vote_average >= minRating);
   if (sortOrder === "highest") {
     displayedMovies.sort((a, b) => b.vote_average - a.vote_average);
   }
@@ -74,6 +76,20 @@ function MovieListPageTemplate({ movies, title, action }) {
             <MenuItem value="lowest">Lowest Rated First</MenuItem>
             <MenuItem value="newest">Newest Releases First</MenuItem>
             <MenuItem value="oldest">Oldest Releases First</MenuItem>
+          </TextField>
+          <TextField
+            select
+            label="Minimum Rating"
+            value={minRating}
+            onChange={(e) => setMinRating(Number(e.target.value))}
+            fullWidth
+            sx={{ mt: 2 }}
+          >
+            <MenuItem value={0}>All Ratings</MenuItem>
+            <MenuItem value={6}>6+ Rating</MenuItem>
+            <MenuItem value={7}>7+ Rating</MenuItem>
+            <MenuItem value={8}>8+ Rating</MenuItem>
+            <MenuItem value={9}>9+ Rating</MenuItem>
           </TextField>
         </Grid>
         <MovieList action={action} movies={displayedMovies}></MovieList>
