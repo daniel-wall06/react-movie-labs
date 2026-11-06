@@ -22,27 +22,70 @@ const MovieRecommendations = ({ movieId }) => {
     }
 
     return (
-        <div>
-            <h2>Recommended Movies</h2>
+       <div style={{ padding: "24px 0" }}>
+            <Typography
+  variant="h5"
+  sx={{
+    fontWeight: "bold",
+    color: "#101070",
+    mb: 3,
+  }}
+>
+  Recommended Movies
+</Typography>
             {recommendations.results.length > 0 ? (
-                <Grid container spacing={2}>
-                    {recommendations.results.map((recommendedMovie) => (
-                        <Grid key={recommendedMovie.id} size={{ xs: 12, sm: 6, md: 3 }}>
-                            <Card>
-                                <Link to={`/movies/${recommendedMovie.id}`}>
+  <Grid container spacing={2}>
+    {recommendations.results.slice(0, 12).map((recommendedMovie) => (
+                        <Grid
+  key={recommendedMovie.id}
+  size={{ xs: 6, sm: 4, md: 3, lg: 2 }}
+>
+                           <Card
+  sx={{
+    height: "100%",
+    borderRadius: 3,
+    overflow: "hidden",
+    transition: "transform 0.2s ease, box-shadow 0.2s ease",
+    "&:hover": {
+      transform: "translateY(-5px)",
+      boxShadow: 6,
+    },
+  }}
+>
+                                <Link
+  to={`/movies/${recommendedMovie.id}`}
+  style={{
+    textDecoration: "none",
+    color: "inherit",
+  }}
+>
                                     <CardMedia
                                         component="img"
                                         image={`https://image.tmdb.org/t/p/w500${recommendedMovie.poster_path}`}
                                         alt={recommendedMovie.title}
-                                        sx={{ height: 350, objectFit: "cover" }}
+                                        sx={{
+  width: "100%",
+  aspectRatio: "2 / 3",
+  objectFit: "cover",
+}}
                                     />
                              
 
-                                <CardContent>
-                                    <Typography variant="h6">
-                                        {recommendedMovie.title}
-                                    </Typography>
-                                </CardContent>
+                               <CardContent sx={{ p: 1.5 }}>
+  <Typography
+    variant="body2"
+    sx={{
+      fontWeight: 600,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      display: "-webkit-box",
+      WebkitLineClamp: 2,
+      WebkitBoxOrient: "vertical",
+    }}
+  >
+    {recommendedMovie.title}
+  </Typography>
+</CardContent>
                                    </Link>
                             </Card>
                         </Grid>

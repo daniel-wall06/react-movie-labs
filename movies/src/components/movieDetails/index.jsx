@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
+import MovieCredits from "../movieCredits";
 
 
 
@@ -28,19 +29,49 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
 
   return (
     <>
-      <Typography variant="h5" component="h3">
-        Overview
-      </Typography>
+      <Paper
+  elevation={2}
+  sx={{
+    p: 3,
+    mb: 3,
+    borderRadius: 3,
+    backgroundColor: "#f1f5f9",
+  }}
+>
+  <Typography
+    variant="h5"
+    sx={{
+      fontWeight: "bold",
+      color: "#101070",
+      mb: 2,
+    }}
+  >
+    Overview
+  </Typography>
 
-      <Typography variant="h6" component="p">
-        {movie.overview}
-      </Typography>
+  <Typography
+    variant="body1"
+    sx={{
+      lineHeight: 1.8,
+      color: "#334155",
+    }}
+  >
+    {movie.overview}
+  </Typography>
+</Paper>
 
 
       <Paper
-        component="ul"
-        sx={{ ...root }}
-      >
+  component="ul"
+  elevation={2}
+  sx={{
+    ...root,
+    mb: 3,
+    borderRadius: 3,
+    backgroundColor: "#f1f5f9",
+    alignItems: "center",
+  }}
+>
         <li>
           <Chip label="Genres" sx={{ ...chip }} color="primary" />
         </li>
@@ -50,7 +81,17 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           </li>
         ))}
       </Paper>
-      <Paper component="ul" sx={{ ...root }}>
+      <Paper
+  component="ul"
+  elevation={2}
+  sx={{
+    ...root,
+    mb: 3,
+    borderRadius: 3,
+    backgroundColor: "#f1f5f9",
+    gap: 1,
+  }}
+>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
           icon={<MonetizationIcon />}
@@ -63,7 +104,17 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
 
-      <Paper component="ul" sx={{ ...root }}>
+      <Paper
+  component="ul"
+  elevation={2}
+  sx={{
+    ...root,
+    mb: 3,
+    borderRadius: 3,
+    backgroundColor: "#f1f5f9",
+    gap: 1,
+  }}
+>
         <li>
           <Chip label="Production Countries" sx={{ ...chip }} color="primary" />
         </li>
@@ -73,7 +124,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           </li>
         ))}
       </Paper>
-
+<MovieCredits movieId={movie.id} />
       <Fab
         color="secondary"
         variant="extended"
@@ -90,8 +141,6 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
-      <NavigationIcon />
-      Reviews
     </>
   );
 };
