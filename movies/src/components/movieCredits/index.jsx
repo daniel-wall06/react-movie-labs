@@ -6,6 +6,7 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { Link } from "react-router";
 
 const MovieCredits = ({ movieId }) => {
   const { data, error, isPending, isError } = useQuery({
@@ -35,18 +36,27 @@ const MovieCredits = ({ movieId }) => {
       key={actor.id}
       size={{ xs: 6, sm: 4, md: 2 }}
     >
-     <Card
-  sx={{
+<Link
+  to={`/actors/${actor.id}`}
+  style={{
+    textDecoration: "none",
+    color: "inherit",
+    display: "block",
     height: "100%",
-    borderRadius: 3,
-    overflow: "hidden",
-    transition: "transform 0.2s ease",
-    "&:hover": {
-      transform: "translateY(-5px)",
-      boxShadow: 4,
-    },
   }}
 >
+  <Card
+    sx={{
+      height: "100%",
+      borderRadius: 3,
+      overflow: "hidden",
+      transition: "transform 0.2s ease",
+      "&:hover": {
+        transform: "translateY(-5px)",
+        boxShadow: 4,
+      },
+    }}
+  >
   <CardMedia
     component="img"
     image={
@@ -71,6 +81,7 @@ const MovieCredits = ({ movieId }) => {
     </Typography>
   </CardContent>
 </Card>
+</Link>
     </Grid>
   ))}
 </Grid>
