@@ -30,14 +30,23 @@ export default function MovieCard({ movie, action }) {
     movie.favorite = false
   }
 
-  const handleAddToFavorite = (e) => {
-    e.preventDefault();
-    addToFavorites(movie);
-  };
 
 
   return (
-    <Card>
+   <Card
+  sx={{
+    borderRadius: 3,
+    overflow: "hidden",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    transition: "transform 0.25s ease, box-shadow 0.25s ease",
+    "&:hover": {
+      transform: "translateY(-6px)",
+      boxShadow: 8,
+    },
+  }}
+>
            <CardHeader
         avatar={
           movie.favorite ? (
@@ -51,6 +60,7 @@ export default function MovieCard({ movie, action }) {
             {movie.title}{" "}
           </Typography>
         }
+        
       />
 
       <CardMedia
@@ -77,7 +87,16 @@ export default function MovieCard({ movie, action }) {
           </Grid>
         </Grid>
       </CardContent>
-            <CardActions disableSpacing>
+         <CardActions
+  disableSpacing
+  sx={{
+    mt: "auto",
+    px: 2,
+    pb: 2,
+    gap: 1,
+    flexWrap: "wrap",
+  }}
+>
       
         {action(movie)}
       
